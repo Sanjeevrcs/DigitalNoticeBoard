@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<style>
+    #login{
+        margin-top:5rem;
+    }
+</style>
+<div class="container py-5 h-100 " id="login">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-4 mb-5 mb-lg-0">
+            <div class="card bg-light">
+            <div class="card-body text-center py-5 px-md-5">
+
+                    <h2 class="mb-2">Login</h2>
+                    <p class="text-50 mb-5">Please enter your login details</p>
+                
+                <form method="POST" action="">
+                    {% csrf_token %}
+                <div class="row">
+                    <div class="form-outline mb-4">
+                        <input type="text" id="form3Example4" class="form-control" name="username"/>
+                        <label class="form-label" for="form3Example4">Username</label>
+                    </div>
+
+                <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="form3Example4" class="form-control" name="password" />
+                        <label class="form-label" for="form3Example4">Password</label>
+                    </div>
+
+                <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-4">
+                        Sign up
+                    </button>
+
+                </div>
+                {%for message in messages%}
+                {{message}}
+                {%endfor%}
+                {{text}}
+                </form>
+
+            </div>
+
+            </div>
+        
+        </div>
+    
+    </div>
+
+</div>
+
+
+{% endblock %}

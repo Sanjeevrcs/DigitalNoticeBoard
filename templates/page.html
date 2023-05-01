@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+     
+    
+    <div class="hide" id="container"> 
+        {% for data in layout_data %}
+        
+            {% for d in data %}
+                {{d.data}}
+            {% endfor %}
+
+        {% endfor %}
+
+        
+    </div>
+    <div class="hide" id="content_data">
+        {% for data in layout_content_data%}
+        {{data.data.file_data}}
+        {% endfor %}
+    </div>
+
+    <div id="form_data" class="hide">
+        {% for k,v in form_data.items %}
+        {{v.data}}
+        {% endfor%}
+        
+    </div>
+
+    <style>
+        .hide{
+            display: none;
+        }
+        .content{
+            height:inherit;
+            width: inherit;
+            overflow: scroll;
+        }
+    </style>
+    <script>
+        
+        window.addEventListener("load", (event) => {
+
+            let text = document.getElementById('container').innerText
+            const myArray = text.split("&&&");
+            console.log(myArray)
+          
+            myArray.pop()
+            console.log(myArray)
+            myArray.shift()
+            myArray.forEach(Element =>{
+                let div = document.createElement('div');
+                div.innerHTML = Element;
+                document.body.append(div)
+            })
+
+
+
+            let content_data = document.getElementById('content_data').innerText;
+            content_data = content_data.replace(/'/g, '"'); // replace single quotes with double quotes
+            console.log(content_data); // log the content_data variable to the console
+
+            let data = JSON.parse(content_data);
+            console.log('data',data); // log the data variable to the console
+
+            let element_arr = {}
+            for (const property in data) {
+                console.log('property',property)
+                element_arr[property]=document.getElementById(property)
+            }  
+            console.log('element_arr',element_arr);
+                        
+
+
+            console.log(element_arr)
+
+            let form_data = document.getElementById('form_data').innerText
+            form_data = form_data.replace(/'/g, '"'); 
+            form_data = JSON.parse(form_data)
+            console.log('form_data',form_data)
+            
+            for(const k in form_data){
+                if (form_data[k] != 'null')
+                {
+                    if(form_data[k] == 'image'){
+                        let imagetag = document.createElement('img')
+                        // imagetag.src = data[k]
+                        imagetag.setAttribute('src',data[k])
+                        imagetag.classList.add('content')
+                        console.log('image src = ',data[k])
+                        console.log('imagetag=',imagetag)
+                        element_arr[k].append(imagetag)
+                    }
+                    else if(form_data[k] == 'video'){
+                        let videotag = document.createElement('video');
+                        videotag.setAttribute('src',data[k])
+                        console.log('video src = ',data[k])
+                        videotag.autoplay = false;
+                        videotag.controls = true;
+                        videotag.muted = false;
+                        videotag.classList.add('content')
+                        element_arr[k].append(videotag)
+                    }
+                    else if(form_data[k] == 'text'){
+                        let para = document.createElement('p')
+                        para.innerText = data[k]
+                        para.classList.add('content')
+                        element_arr[k].append(para)
+                    }
+                    
+                }
+            }
+
+        })
+    </script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

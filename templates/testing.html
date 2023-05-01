@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+  <title> Editor </title> 
+  <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="{% static 'css/style.css'%}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+  <script type="module" src="{% static 'js/custom_template.js' %}" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav">
+       
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <input type='button' 
+                style='float:left' 
+                    id='div' 
+                        value='Create more DIVs' />
+            </li>
+            <li class="nav-item">
+              <input type='button' 
+              style='float:left' 
+                  id='imgtag' 
+                      value='Create image tag' />
+            </li>
+            <li class="nav-item">
+              <input type='button' 
+              style='float:left' 
+                  id='txttag' 
+                      value='Create text tag' />
+            </li>
+           
+            <li class="nav-item">
+              <button id="getChild" class="btn btn-primary">create</button>    
+            </li>
+          </ul>
+          
+        </div>
+      </nav>
+    
+      <!-- <div class="test">
+            <div class="child">
+              sanjeev
+            </div>
+      </div> -->
+
+    <div>
+      
+       <div class="container" id="test" >
+      
+       </div>
+       <div id="divResize" class="hide">
+             
+       </div>
+       
+       
+    </div>
+
+    <form name="myform" action="" method="POST"  id="myform" class="hide">
+        {% csrf_token %}
+         <input class="form-control" name="data" id="inputfield" type="text"> 
+         <input name="data2" name="data2" id="inputfield2" type="text">   
+         <input value="submit" type="submit">submit</input>
+    </form>
+    <h1>Classic editor</h1>
+    <div id="editor">
+        <p>This is some sample content.</p>
+    </div>
+    <script>
+        // ClassicEditor
+        //     .create( document.querySelector( '#editor' ) )
+        //     .catch( error => {
+        //         console.error( error );
+        //     } );
+        //   $('#editor').draggable({ containment:'window' }).resizable()
+    </script>
+    <style>
+      .hide{
+        display: none;
+      }
+      /* .test{
+        border-style:double;
+        min-width: 50rem;
+        min-height: 50rem;
+      }
+      .child{
+        border-style:double;
+        min-width: 10rem;
+        min-height: 10rem;
+      } */
+    </style>
+
+    
+    <script>
+
+
+      // window.addEventListener('load',()=>{
+      //     let test = document.getElementsByClassName('test')[0]
+      //     $('.test').draggable({ containment:'window' }).resizable()
+      //     $( ".child" ).resizable().draggable({ containment: test });
+      // })
+
+    var element_pos = 0;    // Position of the newly created elements.
+    var iCnt = 0;
+    let id = 1;
+    $(document).ready(function() {
+
+        
+        $(function() { 
+            $("#divResize").draggable().resizable()
+         });
+        
+        $('#div').click(function() {
+
+            var dynamic_div = $(document.createElement('div')).css({
+                border: '1px double', position: 'absolute', left: element_pos, 
+                top: $('#divResize').height() + 20,
+                width: '120', height: '120', padding: '3', margin: '0'
+            });
+            dynamic_div.attr("id",'content'+id,'class','DragandRezise');
+            id+=1
+            element_pos = element_pos + $('#divContainer').width() + 140;
+
+            $('<select name="typedata" id="typedata"><option value="null">none</option> <option value="video">video</option> <option value="image">image</option> <option value="text">text</option></select>').appendTo(dynamic_div)
+    
+            if($(dynamic_div).appendTo('.container'))
+            {
+              console.log("successfully added")
+            };
+            console.log('elements top',$(dynamic_div).offsetTop)
+            
+            
+            $(dynamic_div).dblclick(function() {
+                // alert( "Handler for .dblclick() called." );
+                dynamic_div.remove()
+              });
+              $(dynamic_div).on("doubletap", function() {
+                //doubletap stuff
+                dynamic_div.remove()
+            });
+
+            iCnt = iCnt + 1;
+        });
+    });
+    let inputid = 1
+    let imageid = 1
+    $('#imgtag').click(function() {
+        var dynamic_div = $(document.createElement('div')).css({
+                border: '1px double', position: 'absolute', left: element_pos, 
+                top: $('#divResize').height() + 20,
+              width: '240', height: '240', padding: '3', margin: '0'
+            });
+            dynamic_div.attr("id",'content'+id,'class','DragandRezise');
+            id+=1
+            element_pos = element_pos + $('#divContainer').width() + 140;
+
+            $('<input type="file" onchange="previewFile(inputid,imageid)"  id=inputid'+inputid + ' /><br>').appendTo(dynamic_div)
+            $('<img src="" height="100%" width="100%" alt="Image preview " id=imageid'+imageid+'>').appendTo(dynamic_div)
+
+            imageid++
+            inputid++
+    
+            if($(dynamic_div).appendTo('.container').draggable().resizable())
+            {
+              console.log("successfully added")
+            };
+            console.log('elements top',$(dynamic_div).offsetTop)
+            
+            
+            $(dynamic_div).dblclick(function() {
+                // alert( "Handler for .dblclick() called." );
+                dynamic_div.remove()
+              });
+              $(dynamic_div).on("doubletap", function() {
+                //doubletap stuff
+                dynamic_div.remove()
+            });
+
+            iCnt = iCnt + 1;
+
+            
+    })
+    let txtid = 1
+    $('#txttag').click(function() {
+
+            let txtinput = $(document.createElement('input')).attr({'type':'text','id':txtid})
+            $(txtinput).appendTo('.container')
+          
+          
+            txtid++
+    
+            if( $(txtinput).appendTo('.container').draggable().resizable())
+            {
+              console.log("successfully added")
+            };
+           
+            
+            
+            $(txtinput).dblclick(function() {
+                // alert( "Handler for .dblclick() called." );
+                txtinput.remove()
+              });
+              $(txtinput).on("doubletap", function() {
+                //doubletap stuff
+                txtinput.remove()
+            });
+
+            iCnt = iCnt + 1;
+
+            
+    })
+    function previewFile(imageid, inputid) {
+
+  inputid -= 1;
+  imageid -= 1;
+  inpid = "inputid" + inputid;
+  imgid = "imageid" + imageid;
+  console.log(imgid, inpid);
+  let preview = document.getElementById(imgid);
+  let file = document.getElementById(inpid).files[0];;
+  document.getElementById(inpid).classList.add('hide')
+  console.log("file", file);
+  const reader = new FileReader();
+
+  reader.addEventListener(
+    "load",
+    () => {
+      preview.src = reader.result;
+    },
+    false
+  );
+
+  if (file && file instanceof Blob) {
+    console.log('file')
+    reader.readAsDataURL(file);
+  } 
+  else {
+    console.log('else')
+  }
+}
+
+    const getChildBtn = document.querySelector('#getChild')
+
+
+    
+
+
+  getChildBtn.addEventListener('click',()=>{
+        console.log('working')
+        console.log("cloning")
+    let test1 = document.getElementById('test')
+    // let test2 = document.getElementById('divResize')
+    
+    let i=0
+    let data = '&&&'
+    let contentData = {}
+    let id = ''
+    // let value = ''
+    
+    test1.childNodes.forEach(element => {
+        if($(element).children().find(":selected").val()!=undefined){
+            let select = $(element).children()
+            let selected_val = select.find(":selected").val()
+            console.log('selected value is ',selected_val)
+            $(element).children().remove()
+            console.log('element-',i,typeof( element.outerHTML))
+            id = $(element).attr('id')
+            // id = JSON.stringify(id)
+            // selected_val = JSON.stringify(selected_val)
+            console.log(id)
+            contentData[id] = selected_val
+            
+            data += element.outerHTML
+            console.log($(element).attr('id'),selected_val)
+            if(i < test1.childNodes.length-1){
+              data += '&&&'
+            }  
+            console.log(contentData)
+        }
+ 
+    });                       
+    console.log('contentData',contentData);
+
+    let input1 = document.getElementById('inputfield')
+    input1.value = data
+    let input2 = document.getElementById('inputfield2')
+    input2.value = JSON.stringify(contentData)
+    console.log('input value1 is  ',input1.value,'input value2 = ',contentData)
+    // document.getElementById("myform").submit();
+  
+    
+    
+
+    
+})
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,27 @@
+*  { font-family: 'Segoe UI'; font-size: 15px; }
+  
+body{
+  max-width: 100vh;
+}
+
+#divContainer, #divResize 
+{ 
+  border: dashed 1px #ccc; 
+  width: 120px; 
+  height: 120px; 
+  padding: 5px; 
+  margin: 5px; 
+  cursor: move; 
+  /* float: left; */
+  min-width:30px;
+  min-height: 30px;
+} 
+
+.container-fluid{
+    max-width: 100vh;
+    position: absolute;    
+}
+
+.hide{
+  display: none;
+}

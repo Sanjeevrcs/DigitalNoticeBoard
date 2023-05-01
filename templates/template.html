@@ -1,0 +1,173 @@
+{% extends 'index1.html' %}
+
+{% block content %}
+<div style="display: none;">
+
+</div>
+</style>
+<div class="container-fluid ">
+    
+    <div id="carouselExampleControls" class="carousel slide h-100 w-100" data-mdb-ride="carousel">
+        <div class="carousel-inner h-100 w-100">
+            {% for d in data %}
+            <div>
+
+            
+            {% if d.layout1 %}
+            <div class=" carousel-item {% if forloop.first %} active {% endif %}" data-mdb-interval= {{d.changing_seconds}} > 
+            <div class="card-group">
+                <div class="card">
+                  <img class="card-img-top" src="{{d.cardImage1.url}}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">{{d.cardTitle1}}</h5>
+                        <p class="card-text">{{d.cardBody1}}</p>
+                  </div>
+                </div>
+                <div class="card">
+                  <img class="card-img-top" src="{{d.cardImage2.url}}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">{{d.cardTitle2}}</h5>
+                    <p class="card-text">{{d.cardBody2}}</p>
+                  </div>
+                </div>
+                <div class="card">
+                  <img class="card-img-top" src="{{d.cardImage3.url}}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">{{d.cardTitle3}}</h5>
+                    <p class="card-text">{{d.cardBody3}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% elif d.layout2 %}
+                <div class="carousel-item {% if forloop.first %} active {% endif %}" data-mdb-interval={{d.changing_seconds}} > 
+                    <div class="card mb-3">
+                        <div class="row">
+                          <div class="col">
+                            <img src="{{d.image.url}}" class="img-fluid rounded-start" alt="...">
+                          </div>
+                          <div class="col">
+                            <div class="card-body">
+                              <p class="card-text">{{d.text}}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    
+                </div>
+            
+            {% elif d.layout3 %}
+            <div>
+                <div class="carousel-item {% if forloop.first %} active {% endif %}" data-mdb-interval={{d.changing_seconds}} > 
+                    
+                    <div class="card mb-3">
+                        <div class="row">
+                          <div class="col">
+                            <div class="card-body">
+                              <p class="card-text">{{d.text}}</p>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <img src="{{d.image.url}}" class="img-fluid rounded-start" alt="...">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            </div>
+
+            {% elif d.layout4 %}
+
+            <div>
+                <div class="carousel-item {% if forloop.first %} active {% endif %}" > 
+                    
+                    
+                    <div class="card mb-3">
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="card">
+                                    
+                                        <video class="video-fluid" preload="auto" loop autoplay muted controls> 
+                                            <source src="{{d.video.url}}" type="video/mp4">
+                                        </video>
+                                       
+                                    </div>
+                            </div>
+                                    <div class="col-md">
+                                        {{d.caption}}
+                                    </div>
+                                
+                                </div>
+                    </div>
+                    </div>
+            </div>
+            
+        
+            {% else %}
+            
+            {% endif %}
+
+
+                        {%endfor%}
+                        
+                    
+
+                    <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleControls" data-mdb-slide="prev">
+                    <span class="carousel-control-prev-icon bg-primary" aria-hidden="true"></span>
+                    
+                    </button>
+                    <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleControls" data-mdb-slide="next">
+                    <span class="carousel-control-next-icon bg-primary" aria-hidden="true"></span>
+                    
+                    </button>
+                </div>
+            </div>
+            
+        
+            
+
+
+        </div>
+        {% for d in layout_data %}
+        
+                        {% for data in d%}
+                <div class=" h-100 carousel-item {% if forloop.first %} active {% endif %}" > 
+                    <div class="hide" id="container">
+                        sundewuj
+                        
+                        {{data.data}}
+                        
+                    </div>        
+            </div>
+            {%endfor%}
+            
+                        {% endfor %}
+            </div>
+              
+        <style>
+            .hide{
+                display: none;
+            }
+        </style>
+        <script>
+            
+            window.addEventListener("load", (event) => {
+    
+                let text = document.getElementById('container').innerText
+                const myArray = text.split("&&&");
+                console.log(myArray)
+                myArray.shift()
+                myArray.pop()
+                console.log(myArray)
+                myArray.shift()
+                myArray.forEach(Element =>{
+                    let div = document.createElement('div');
+                    div.innerHTML = Element;
+                    // div.classList.add(' h-100 carousel-item {% if forloop.first %} active {% endif %}')
+                    document.body.append(div)
+                })
+                
+            })
+        </script>
+
+{% endblock %}
+
