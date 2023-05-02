@@ -11,7 +11,7 @@ var element_pos = 0;    // Position of the newly created elements.
         $('#btClickMe').click(function() {
 
             var dynamic_div = $(document.createElement('div')).css({
-                border: '1px dashed', position: 'absolute', left: element_pos, 
+                border: '1px double', position: 'absolute', left: element_pos, 
                 top: $('#divResize').height() + 20,
                 width: '120', height: '120', padding: '3', margin: '0'
             });

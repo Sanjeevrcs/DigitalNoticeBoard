@@ -7,14 +7,7 @@
   <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"/>
   <link href="{% static 'css/style.css'%}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
-  <script type="module" src="{% static 'js/custom_template.js' %}" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+  
 
 </head>
 
@@ -55,11 +48,7 @@
         </div>
       </nav>
     
-      <!-- <div class="test">
-            <div class="child">
-              sanjeev
-            </div>
-      </div> -->
+     
 
     <div>
       
@@ -79,43 +68,29 @@
          <input name="data2" name="data2" id="inputfield2" type="text">   
          <input value="submit" type="submit">submit</input>
     </form>
-    <h1>Classic editor</h1>
-    <div id="editor">
-        <p>This is some sample content.</p>
-    </div>
+    
     <script>
-        // ClassicEditor
-        //     .create( document.querySelector( '#editor' ) )
-        //     .catch( error => {
-        //         console.error( error );
-        //     } );
-        //   $('#editor').draggable({ containment:'window' }).resizable()
+       
     </script>
     <style>
       .hide{
         display: none;
       }
-      /* .test{
-        border-style:double;
-        min-width: 50rem;
-        min-height: 50rem;
-      }
-      .child{
-        border-style:double;
-        min-width: 10rem;
-        min-height: 10rem;
-      } */
+    
     </style>
 
-    
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+    <script type="module" src="{% static 'js/custom_template.js' %}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script>
 
 
-      // window.addEventListener('load',()=>{
-      //     let test = document.getElementsByClassName('test')[0]
-      //     $('.test').draggable({ containment:'window' }).resizable()
-      //     $( ".child" ).resizable().draggable({ containment: test });
-      // })
+     
 
     var element_pos = 0;    // Position of the newly created elements.
     var iCnt = 0;
@@ -135,6 +110,7 @@
                 width: '120', height: '120', padding: '3', margin: '0'
             });
             dynamic_div.attr("id",'content'+id,'class','DragandRezise');
+            dynamic_div.draggable().resizable();
             id+=1
             element_pos = element_pos + $('#divContainer').width() + 140;
 
@@ -200,13 +176,13 @@
     let txtid = 1
     $('#txttag').click(function() {
 
-            let txtinput = $(document.createElement('input')).attr({'type':'text','id':txtid})
-            $(txtinput).appendTo('.container')
+            let txtinput = $(document.createElement('textarea')).attr({'type':'text','id':txtid})
+            $('<textarea></textarea>').appendTo('.container').draggable().resizable()
           
-          
+            $(txtinput).draggable()
             txtid++
     
-            if( $(txtinput).appendTo('.container').draggable().resizable())
+            if( $(txtinput).appendTo('.container'))
             {
               console.log("successfully added")
             };
