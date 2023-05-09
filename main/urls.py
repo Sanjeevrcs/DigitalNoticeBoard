@@ -22,6 +22,6 @@ urlpatterns = [
      path('Template3',Template3,name='Template3'),
      path('Template4',Template4,name='Template4'),
      path('test/<page_name>',test,name='test'),
-     path('deletelayout/<str:id>/<str:layout>/<str:page_name>',deletelayout,name='deletelayout')
+     path('deletelayout/<str:id>',deletelayout,name='deletelayout')
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

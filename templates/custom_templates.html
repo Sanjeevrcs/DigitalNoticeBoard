@@ -6,33 +6,59 @@
   <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"/>
   <link href="{% static 'css/style.css'%}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script type="module" src="{% static 'js/custom_template.js' %}" defer></script>
+  <!-- Font Awesome -->
 
+  
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav">
+            <!--/.Navbar-->
+            <!--Navbar -->
+            <!-- <nav class="mb-4 navbar navbar-expand-lg navbar-dark red darken-2">
+              <a class="navbar-brand font-bold" href="#">Navbar</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText1" aria-controls="navbarText1" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarText1">
+                  <ul class="navbar-nav mr-auto">
+                      <li class="nav-item">
+                          <a class="nav-link waves-effect waves-light" href="#">News <span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link waves-effect waves-light" href="#">World</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link waves-effect waves-light" href="#">Country</a>
+                      </li>
+                  </ul>
+                  <form class="form-inline">
+                      <input class="form-control mr-sm-2" type="text" aria-label="Search">
+                      <button class="btn btn-outline-white btn-sm my-0" type="submit">Search</button>
+                  </form>
+              </div>
+          </nav> -->
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark red darken-2 w-100 h-50" id="nav">
        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
+
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
-
             <li class="nav-item ">
-                <input type='button' class="btn btn-success mr-2" 
-                style='float:left' 
-                    id='btClickMe' 
-                        value='Create more draggable DIVs' />
+                <input type='button' class="btn btn-success mr-2" style='float:left' id='btClickMe' value='Create more container' />
             </li>
             <li class="nav-item">
-              <button id="getChild" class="btn btn-primary">create</button>    
+                <button id="getChild" class="btn btn-primary">create</button>    
             </li>
           </ul>
           
         </div>
-      </nav>
+    </nav>
     
     <div>
       
@@ -53,6 +79,7 @@
          <input value="submit" type="submit">submit</input>
     </form>
 
+    
 
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
@@ -60,15 +87,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-
-    <script>
-        window.addEventListener("load", (event) => {
-          
-          let ele = document.getElementById('nav')
-          console.log(ele.offsetHeight);
-        
-        })
-    </script>
+    <script type="module" src="{% static 'js/custom_template.js' %}" defer></script>
+    <!-- MDB -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
+    ></script>
+    
 
 </body>
 </html>

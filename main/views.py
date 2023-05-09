@@ -140,7 +140,7 @@ def template(request,page_name):
     return render(request,'template.html',context)
 
 
-def test(request,page_name):
+def  test(request,page_name):
 
     context = {}
     page = pages.objects.get(pagename=page_name)
@@ -286,11 +286,11 @@ def deletepage(request,page_name):
     page.delete();
     return redirect('main')
 
-def deletelayout(request,id,layout,page_name):
+def deletelayout(request,id):
 
-    l = layout.objects.get(id=id);
+    l = layout_name.objects.get(id=id);
     l.delete()
-    return redirect('edit',page_name=page_name)
+    return redirect('main')
 
 def edit(request,page_name):
     context={}
