@@ -1,0 +1,310 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+<div class="container-fluid ">  
+      <div class="row h-100 mb-3">
+          
+          <div class="col w-100 h-100">
+            <div class="card w-100 h-50">
+              <div class="card-header bg-transparent border-success fs-4">Template-1</div>
+              <div class="card-body w-100">
+                <iframe id="encoder_iframe" src="{% url 'Template1' %}" class="w-100" frameBorder="0"></iframe>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                  Add slide
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <form method="POST" action="" enctype="multipart/form-data" class="border border-info p-4 overflow-auto ">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Template-1</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                       
+                          {% csrf_token %}
+                          
+                          <p>
+                              <label class="form-label" for="form1">changing_seconds:</label>
+                              {{form1.changing_seconds}}
+                              <label class="form-label" for="form1">priority:</label>
+                              {{form1.priority}}
+          
+                              <label class="form-label" for="form1">card_Title_1:</label>
+                              {{form1.cardTitle1}}
+                              <label class="form-label" for="form1">Card_body_1:</label>
+                              {{form1.cardBody1}}
+                              <label class="form-label" for="form1">card_Image_1:</label>
+                              {{form1.cardImage1}}
+          
+                              <label class="form-label" for="form1">card_Title_2:</label>
+                              {{form1.cardTitle2}}
+                              <label class="form-label" for="form1">Card_body_2:</label>
+                              {{form1.cardBody2}}
+                              <label class="form-label" for="form1">card_Image_2:</label>
+                              {{form1.cardImage2}}
+          
+                              <label class="form-label" for="form1">card_Title_3:</label>
+                              {{form1.cardTitle3}}
+                              <label class="form-label" for="form1">Card_body_3:</label>
+                              {{form1.cardBody3}}
+                              <label class="form-label" for="form1">card_Image_3:</label>
+                              {{form1.cardImage3}}
+                            </p>
+                            
+                          <p >
+                          <!-- <label class="form-label" for="form1">{{f.label}}</label>
+                          {{f}} -->
+                        </p>
+                        
+                          
+                      </div>
+                      <div class="modal-footer">
+                    
+                        <input class="btn btn-primary" type="submit" value="submit" name="button1">
+                     
+                      </div>
+                    </form> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col w-100 h-100">
+            <div class="card w-100 h-50">
+              <div class="card-header bg-transparent border-success fs-4">Template-2</div>
+              <div class="card-body w-100">
+                <iframe id="encoder_iframe" src="{% url 'Template2' %}" class="w-100" frameBorder="0"></iframe>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Template-2">
+                  Add slide
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="Template-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <form method="POST" action="" enctype="multipart/form-data" class="border border-info p-4 overflow-auto ">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Template-2</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                       
+                          {% csrf_token %}
+                        
+                          <p>
+                            <label class="form-label" for="form2">changing_seconds</label>
+                            {{form2.changing_seconds}}
+                          </p>
+                          <p>
+                            <label class="form-label" for="form2">priority</label>
+                            {{form2.priority}}
+                          </p>
+                          <p>
+                            <label class="form-label" for="form2">text</label>
+                            {{form2.text}}
+                          </p>
+                          <p>
+                            <label class="form-label" for="form2">image</label>
+                            {{form2.image}}
+                          </p>
+                        
+                          
+                      </div>
+                      <div class="modal-footer">
+                    
+                        <input  class="btn btn-primary" type="submit" value="submit" name="button2">
+                     
+                      </div>
+                    </form> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col w-100 h-100">
+          <div class="card w-100 h-50">
+            <div class="card-header bg-transparent border-success fs-4">Template-3</div>
+            <div class="card-body w-100">
+              <iframe id="encoder_iframe" src="{% url 'Template3' %}" class="w-100" frameBorder="0"></iframe>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Template-3">
+                Add slide
+              </button>
+              
+              <!-- Modal -->
+              <div class="modal fade" id="Template-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <form method="POST" action="" enctype="multipart/form-data" class="border border-info p-4 overflow-auto ">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Template-3</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                     
+                        {% csrf_token %}
+                      
+                        <p>
+                          <label class="form-label" for="form3">changing_seconds</label>
+                          {{form3.changing_seconds}}
+                      </p>
+                      <p>
+                          <label class="form-label" for="form3">priority</label>
+                          {{form3.priority}}
+                      </p>
+                      <p>
+                          <label class="form-label" for="form3">text</label>
+                          {{form3.text}}
+                      </p>
+                      <p>
+                          <label class="form-label" for="form3">image</label>
+                          {{form3.image}}
+                      </p>
+                        
+                    </div>
+                    <div class="modal-footer">
+                  
+                      <input class="btn btn-primary" type="submit" value="submit" name="button3">
+                   
+                    </div>
+                  </form> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col w-100 h-100">
+          <div class="card w-100 h-50">
+            <div class="card-header bg-transparent border-success fs-4">Template-4</div>
+            <div class="card-body w-100">
+              <iframe id="encoder_iframe" src="{% url 'Template4' %}" class="w-100" frameBorder="0"></iframe>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Template-4">
+                Add slide
+              </button>
+              
+              <!-- Modal -->
+              <div class="modal fade" id="Template-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <form method="POST" action="" enctype="multipart/form-data" class="border border-info p-4 overflow-auto ">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Template-4</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                     
+                        {% csrf_token %}
+                      
+                        <p>
+                          <label class="form-label" for="form3">changing_seconds</label>
+                          {{form4.changing_seconds}}
+                      </p>
+                      <p>
+                          <label class="form-label" for="form3">priority</label>
+                          {{form4.priority}}
+                      </p>
+                     
+                      <p>
+                          <label class="form-label" for="form3">Video</label>
+                          {{form4.video}}
+                      </p>
+                      <p>
+                        <label class="form-label" for="form3">Caption for the video</label>
+                        {{form4.caption}}
+                      </p>
+                    
+                        
+                    </div>
+                    <div class="modal-footer">
+                  
+                      <input class="btn btn-primary" type="submit" value="submit" name="button4">
+                   
+                    </div>
+                  </form> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+</div>
+
+
+{% for forms in d_form %}   
+{% if forloop.first %}
+<h2 class="d-flex justify-content-center mt-3 mb-3">Dynamically generated layout forms</h2>
+{% endif %}  
+<div class="row mb-3">
+     
+        
+        <div class="col">
+            <div class="container">
+                
+                
+            <form method="POST" action="" enctype="multipart/form-data" class="border border-info p-4  overflow-auto ">
+                {% csrf_token %}
+                <p>
+                    <label class='form-label' for="layout_name">Layout name:</label>
+                    <input class="form-control" value="{{forms.layout_name}}" readonly='true' id="layout_name" name='layout_name'>
+                </p>
+                <p>
+                    <label class='form-label' for="changing_seconds" >changing_seconds</label>
+                    <input class="form-control" type="number" id="changing_seconds" name="changing_seconds">
+                </p>
+                <p>
+                    <label class='form-label' for="priority" >priority</label>
+                    <input class="form-control" type="number" id="priority" name="priority">
+                </p>
+                
+                {% for k,v in forms.data.items %}
+
+                
+
+                    {% if v == 'image'%}
+                    <label class='form-label' for="{{k}}" >ImageField</label>
+                    <input class='form-control'type="file" id="{{k}}" name="{{k}}" accept="images/">
+                    {% endif %}
+
+                    {% if v == 'video'%}
+                    <label class='form-label' for="{{k}}" >VideoField</label>
+                    <input class='form-control'type="file" id="{{k}}" name="{{k}}" accept="videos/%y">
+                    {% endif %}
+
+                    {% if v == 'text'%}
+                    <label class='form-label' for="{{k}}" >TextField</label>
+                    <input class='form-control'type="text" id="{{k}}" name="{{k}}">
+                    {% endif %}
+
+                
+
+                {% endfor %}	
+                
+
+                <input type="submit" value="submit" name="{{forms.layout_name}}" >
+            </form> 
+            </div>
+        </div>
+
+        
+    </div>
+    {% endfor %}
+{% endblock %}

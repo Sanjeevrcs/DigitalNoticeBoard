@@ -202,7 +202,7 @@
 
             
     })
-    function previewFile(imageid, inputid) {
+  function previewFile(imageid, inputid) {
 
   inputid -= 1;
   imageid -= 1;
@@ -210,6 +210,8 @@
   imgid = "imageid" + imageid;
   console.log(imgid, inpid);
   let preview = document.getElementById(imgid);
+  let parent_element = $(preview).parent()
+  
   let file = document.getElementById(inpid).files[0];;
   document.getElementById(inpid).classList.add('hide')
   console.log("file", file);
@@ -230,6 +232,11 @@
   else {
     console.log('else')
   }
+  if($(preview).appendTo('body').draggable().resizable())
+  {
+    console.log('success kaipulla')
+  }
+  
 }
 
     const getChildBtn = document.querySelector('#getChild')

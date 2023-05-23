@@ -154,7 +154,7 @@ def  test(request,page_name):
         print('value is ',i.layout_name)
         if i.layout_name not in arr:
             arr.append(i.layout_name)
-    
+    print('arr',arr)
     layout_data = []
     for i in arr:
         name = layout_name.objects.get(name=i)
@@ -244,7 +244,7 @@ def forms(request,page_name):
                 form_4.save()
 
         else: 
-            # print('type is',type(request.FILES['content1']))
+            # Dynamic_Forms 
             post_data = {}
             file_data = {}
             for k,v in request.POST.items():

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Webpage Editor</title>
+  </head>
+  <body>
+    <style>
+        #container{
+          min-height:100vh;
+          max-width: 100vw;
+        }
+        .image{
+          width:100px;
+          height: 100px;
+        }
+        .focus{
+        border-color: #FF0000;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+        }
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-light border-bottom border-primary mt-0" style="background-color: #e3f2fd; min-height: 100px;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="d-flex flex-column mr-2">
+            <div class="nav-item mb-3">
+               <button class="btn btn-primary" id="div" onclick="createDiv(event)">container</button>
+            </div>
+            <div class="nav-item">
+              <button class="btn btn-primary">Add text</button>
+            </div>
+            
+          </div>
+
+          <div class="d-flex flex-column mr-2">
+            <div class="nav-item">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Image
+              </button>
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Select Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <input type="file" id="imageinput"/>
+                  </div>
+                  <div class="modal-footer">
+
+                    <input type="submit" value="submit" onclick="createImg(event)" data-dismiss="modal">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="nav-item mb-3">
+            <button class="btn btn-primary" id="Delete" onclick="Delete(event)">Delete</button>
+         </div>
+         
+        </div>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+    </nav>
+
+    <div id="container">
+
+    </div>
+    
+    <div id="divResize" class="hide">
+          
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+    <!-- <script type="module" src="{% static 'js/custom_template.js' %}" defer></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    
+    <script>
+      var element_pos = 0;    // Position of the newly created elements.
+      var iCnt = 0;
+      let id = 1;
+      let div_arr = [] 
+      let scope_var = document.getElementById('container') 
+     
+
+
+
+      function createDiv(event){
+        
+                var div = $(document.createElement('div')).css({
+                    border: '1px double', width: '120', height: '120', padding: '3', margin: '0'
+                });
+                div.attr("id",'content'+id,);
+                div_arr.push(id)
+                console.log('Div_arr is ',div_arr)
+                id+=1
+                div.draggable({
+                  containment: scope_var,
+                  appendTo: scope_var
+                }).resizable({
+                  containment: scope_var
+                });
+
+                if($(div).appendTo(scope_var))
+                {
+                  console.log("successfully added")
+                };
+                console.log('elements top',$(div).offsetTop)
+                $(div).dblclick(function(event) {
+                    
+                    scope_var = event.target
+                    scope_var.classList.add('focus')
+                    console.log('scope variable after double click',scope_var)
+                  
+                  });
+                iCnt = iCnt + 1;
+                scope_var.classList.remove('focus')
+                scope_var = document.getElementById('container') 
+               
+        }
+        
+        
+          
+         function createImg(event){
+              
+              // console.log('scope-variable',scope_var)
+              // let file = document.getElementById('imageinput').files[0];;
+
+              // console.log("file", file);
+              // const reader = new FileReader();
+
+              // reader.addEventListener("load",() => {
+              //   $(document.createElement('img')).attr('src', reader.result).css({
+              //   width: '120', height: '120',resize:'both'
+              //   }).draggable({
+              //       containment: scope_var,
+              //       appendTo: scope_var
+              //   }).resizable({
+              //       containment: scope_var
+              //   }).appendTo(scope_var);
+              //   },
+              //   false
+              // );
+
+              // if (file && file instanceof Blob) {
+              //   console.log('file')
+              //   reader.readAsDataURL(file);
+              // } 
+              // else {
+              //   console.log('else')
+              // }
+                  
+              const fileInput = document.getElementById('imageinput');
+const file = fileInput.files[0];
+
+if (file && file instanceof Blob) {
+  const reader = new FileReader();
+
+  reader.addEventListener("load", () => {
+    const img = $('<img>')
+      .attr('src', reader.result)
+      .css({resize: 'both',width:'240px',height:'240px' })
+      .appendTo(scope_var)
+      .on("load", () => {
+        $(img).draggable({ containment: scope_var, appendTo: scope_var });
+        $(img).resizable({ containment: scope_var, handles: 'ne, se, sw, nw' });
+      });
+  }, false);
+
+  reader.readAsDataURL(file);
+}
+
+            }
+                            
+
+          function Delete(event){
+
+            console.log('Scope varible inside Delete function - ',scope_var)
+            if(!(scope_var.id == 'container')){
+              $(scope_var).remove()
+            }
+
+          }        
+      // function scope(){
+      //   console.log('div_arr inside scope',div_arr)
+      //   div_arr.forEach( div =>{
+      //     console.log(div)
+      //     document.getElementById('content'+div).addEventListener('dblclick',()=>{
+      //         console.log('div-',div,'is clicked');
+      //         scope_var = document.getElementById('content'+div)
+      //         console.log('scope_var',scope_var)
+      //     })
+      // })
+      // }
+
+    </script>  
+
+    
+  </body>
+</html>

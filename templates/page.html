@@ -22,14 +22,17 @@
         
     </div>
     <div class="hide" id="content_data">
+
         {% for data in layout_content_data%}
         {{data.data.file_data}}
         {% endfor %}
+
     </div>
 
     <div id="form_data" class="hide">
+
         {% for k,v in form_data.items %}
-        {{v.data}}
+            {{v.data}}
         {% endfor%}
         
     </div>
@@ -61,14 +64,18 @@
                 document.body.append(div)
             })
 
-
+            let data = ''
 
             let content_data = document.getElementById('content_data').innerText;
-            content_data = content_data.replace(/'/g, '"'); // replace single quotes with double quotes
-            console.log(content_data); // log the content_data variable to the console
+            if(!(content_data in ['',null])){
 
-            let data = JSON.parse(content_data);
-            console.log('data',data); // log the data variable to the console
+                content_data = content_data.replace(/'/g, '"'); // replace single quotes with double quotes
+            console.log('content_data = ',content_data); // log the content_data variable to the console
+
+             data = JSON.parse(content_data);
+            console.log('data',data);
+            }
+             // log the data variable to the console
 
             let element_arr = {}
             for (const property in data) {
@@ -91,7 +98,6 @@
                 {
                     if(form_data[k] == 'image'){
                         let imagetag = document.createElement('img')
-                        // imagetag.src = data[k]
                         imagetag.setAttribute('src',data[k])
                         imagetag.classList.add('content')
                         console.log('image src = ',data[k])
