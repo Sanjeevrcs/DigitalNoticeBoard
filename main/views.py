@@ -41,31 +41,35 @@ def logoutpage(request):
 
 # @login_required(login_url='login')
 def main(request):
-
     context = {}
-    pageform = page()
-    l_form = layoutform()
-    totalpages = pages.objects.all();
-    layout1 = l1.objects.all()
-    layout2 = l2.objects.all()
-    layout3 = l3.objects.all()
-    layout4 = l4.objects.all()
-    l_name = layout_name.objects.all()
-    
-    Totalpages = pages.objects.all().count()
-    context = {
-        'pageform' : pageform,
-        'l_form' : l_form,
-        'pages' : totalpages,
-        'layout1' : layout1,
-        'layout2' : layout2,
-        'layout3' : layout3,
-        'layout4' : layout4,
-        'layout_name' : l_name,
-        'Totalpages' : Totalpages
-    }
+    try:
+        context = {}
+        pageform = page()
+        l_form = layoutform()
+        totalpages = pages.objects.all();
+        layout1 = l1.objects.all()
+        layout2 = l2.objects.all()
+        layout3 = l3.objects.all()
+        layout4 = l4.objects.all()
+        l_name = layout_name.objects.all()
+        
+        Totalpages = pages.objects.all().count()
+        screens = pages.objects.all()
+        context = {
+            'pageform' : pageform,
+            'l_form' : l_form,
+            'pages' : totalpages,
+            'layout1' : layout1,
+            'layout2' : layout2,
+            'layout3' : layout3,
+            'layout4' : layout4,
+            'layout_name' : l_name,
+            'Totalpages' : Totalpages,
+            'page' : screens
+        }
+    except Exception as e:
+        print('error = ',e)
     if request.method == 'POST':
-        print("sanjeev");
         return create(request)
     return render(request,'main.html',context)
 
